@@ -16,7 +16,6 @@ export class FormUtils {
   private static getError(errors: ValidationErrors | null ):string | null {
     if ( errors === null) return null;
     for ( const key of Object.keys(errors)) {
-      console.log({key});
       switch(key) {
         case 'required':
           return "Este campo es requerido";
