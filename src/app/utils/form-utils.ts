@@ -7,7 +7,7 @@ export class FormUtils {
            (form.controls[field].touched);
   }
 
-  static getFieldError(form: FormGroup, field:string): string|null {
+  static getFieldError(form: FormGroup, field:string, customMessage: string = ""): string|null {
     if ( !form.controls[field]) return null;
     const errors = form.controls[field].errors;
     return this.getError(errors);
@@ -19,7 +19,7 @@ export class FormUtils {
       console.log({key});
       switch(key) {
         case 'required':
-          return "Esta campo es requerido";
+          return "Este campo es requerido";
         case 'minlength':
           return `Mínimo de ${errors['minlength'].requiredLength} caracteres`;
         case 'min':

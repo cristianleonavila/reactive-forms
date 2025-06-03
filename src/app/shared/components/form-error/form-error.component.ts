@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { FormUtils } from '../../../utils/form-utils';
 
@@ -14,12 +14,18 @@ export class FormErrorComponent {
 
   name = input<string>("");
 
-  formUtils = FormUtils;
+  private formUtils = FormUtils;
 
   formArray = input<FormArray>();
 
   index = input<number>();
 
   customErrors = input<CustomFormMessages>();
+
+  hasErrors = computed<boolean>(() => {
+    if (!this.form() || !this.name()) return false;
+    return this.formUtils.hasErrors(this.form(), this.name());
+  });
+
 
 }
