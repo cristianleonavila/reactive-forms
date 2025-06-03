@@ -11,15 +11,18 @@ export const reactiveRoutes: Routes = [
     children: [
       {
         path: 'basic',
-        component: BasicComponent
+        component: BasicComponent,
+        title: 'Básicos'
       },
       {
         path: 'dynamic',
-        component: DynamicComponent
+        component: DynamicComponent,
+        title: 'Dinámicos'
       },
       {
         path: 'switches',
-        component: SwitchesComponent
+        component: SwitchesComponent,
+        title: 'Switches'
       },
       {
         path: '**',

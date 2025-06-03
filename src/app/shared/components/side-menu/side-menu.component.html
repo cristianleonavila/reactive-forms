@@ -4,6 +4,30 @@
 <h3 class="mt-3">Reactive Forms</h3>
 
 <ul class="list-group">
-  <li class="list-group-item"></li>
+  @for( item of reactiveMenu; track $index) {
+  <li [routerLink]="item.route"
+      routerLinkActive="active"
+      class="list-group-item">{{item.title}}</li>
+  }
+</ul>
+
+<h3 class="mt-3">Auth</h3>
+
+<ul class="list-group">
+  @for( item of authMenu; track $index) {
+  <li [routerLink]="item.route"
+      routerLinkActive="active"
+      class="list-group-item">{{item.title}}</li>
+  }
+</ul>
+
+<h3 class="mt-3">Paises</h3>
+
+<ul class="list-group">
+  @for( item of countryMenu; track $index) {
+  <li [routerLink]="item.route"
+      routerLinkActive="active"
+      class="list-group-item">{{item.title}}</li>
+  }
 </ul>
 
