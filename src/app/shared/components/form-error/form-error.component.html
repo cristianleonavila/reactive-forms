@@ -1,0 +1,12 @@
+@if (form() && name()) {
+  @if(formUtils.hasErrors(form(), name())) {
+    <span class="form-text text-danger">{{formUtils.getFieldError(form(), name())}}</span>
+  }
+}
+
+@if (formArray() && index() !== undefined) {
+  @if(formUtils.hasErrorsInArray(formArray(), index())) {
+    <span class="form-text text-danger">{{formUtils.getFieldErrorFromArray(formArray(), index())}}</span>
+  }
+}
+

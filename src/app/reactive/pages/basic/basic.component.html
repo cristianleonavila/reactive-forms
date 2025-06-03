@@ -15,11 +15,7 @@
                            class="form-control"
                            placeholder="Nombre del producto"
                            formControlName="name">
-
-                    @if (hasErrors('name')) {
-                      <span class="form-text text-danger">{{getFieldError('name')}}</span>
-                    }
-
+                    <form-error [form]="form" name="name"/>
                 </div>
             </div>
 
@@ -31,9 +27,7 @@
                            class="form-control"
                            placeholder="Precio del producto"
                            formControlName="price">
-                    @if (hasErrors('price')) {
-                      <span class="form-text text-danger">{{getFieldError('price')}}</span>
-                    }
+                  <form-error [form]="form" name="price"/>
                 </div>
             </div>
 
@@ -46,9 +40,7 @@
                            placeholder="Existencias del producto"
                            formControlName="inStorage">
 
-                    @if (hasErrors('inStorage')) {
-                      <span class="form-text text-danger">{{getFieldError('inStorage')}}</span>
-                    }
+                  <form-error [form]="form" name="inStorage"/>
                 </div>
             </div>
 
