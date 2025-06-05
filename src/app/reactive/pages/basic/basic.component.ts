@@ -1,7 +1,7 @@
-import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormErrorComponent } from "../../../shared/components/form-error/form-error.component";
+import { CustomFormMessages } from '../../../shared/components/form-error/custom-messages';
 
 @Component({
   selector: 'app-basic',
@@ -12,6 +12,21 @@ import { FormErrorComponent } from "../../../shared/components/form-error/form-e
 export class BasicComponent {
 
   formBuilder = inject(FormBuilder);
+
+  customMsg: CustomFormMessages = {
+    name: {
+      required: "Debe especificar el nombre",
+      minlength: "El nombre debe tener mínimo 3 caracteres"
+    },
+    price: {
+      required: "Debe especificar el precio del producto",
+      min: "El precio del producto debe ser mínimo de 10"
+    },
+    inStorage: {
+      required: "Debe especificar las existencias del producto",
+      min: "Existencia del producto inválida"
+    }
+  };
 
   form: FormGroup = this.formBuilder.group({
     name: ["", [Validators.required, Validators.minLength(3)]],
@@ -24,8 +39,6 @@ export class BasicComponent {
       this.form.markAllAsTouched();
       return;
     }
-    console.log(this.form.value);
-
     this.form.reset();
 
   }

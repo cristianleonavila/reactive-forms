@@ -1,4 +1,5 @@
 import { FormGroup, FormArray, ValidationErrors } from '@angular/forms';
+import { CustomFormMessages } from '../shared/components/form-error/custom-messages';
 
 export class FormUtils {
 
@@ -7,22 +8,22 @@ export class FormUtils {
            (form.controls[field].touched);
   }
 
-  static getFieldError(form: FormGroup, field:string, customMessage: string = ""): string|null {
+  static getFieldError(form: FormGroup, field:string, customMessages: CustomFormMessages): string|null {
     if ( !form.controls[field]) return null;
     const errors = form.controls[field].errors;
-    return this.getError(errors);
+    return this.getError(field, errors, customMessages);
   }
 
-  private static getError(errors: ValidationErrors | null ):string | null {
+  private static getError(field: string | number, errors: ValidationErrors | null, customMessages: CustomFormMessages):string | null {
     if ( errors === null) return null;
     for ( const key of Object.keys(errors)) {
       switch(key) {
         case 'required':
-          return "Este campo es requerido";
+          return customMessages[field]?.required || "Este campo es requerido";
         case 'minlength':
-          return `Mínimo de ${errors['minlength'].requiredLength} caracteres`;
+          return customMessages[field]?.minlength || `Mínimo de ${errors['minlength'].requiredLength} caracteres`;
         case 'min':
-      }   return `Valor mínimo de ${errors['min'].min}`;
+      }   return customMessages[field]?.min || `Valor mínimo de ${errors['min'].min}`;
     }
     return null;
   }
@@ -34,9 +35,9 @@ export class FormUtils {
            (element.touched);
   }
 
-  static getFieldErrorFromArray(formArray: FormArray | undefined, index: number | undefined) {
+  static getFieldErrorFromArray(formArray: FormArray | undefined, index: number | undefined, customMessages: CustomFormMessages) {
     if ( !formArray || index === undefined ) return false;
     const errors = formArray.controls[index].errors ?? {};
-    return this.getError(errors);
+    return this.getError(index, errors, customMessages);
   }
 }

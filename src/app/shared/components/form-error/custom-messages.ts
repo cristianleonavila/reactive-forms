@@ -1,3 +1,7 @@
-type CustomFormMessages = {
-  [key: string]: string
+export type CustomFormMessages = {
+  [key: string]: {
+    required?:string,
+    minlength?:string,
+    min?:string
+  }
 };
