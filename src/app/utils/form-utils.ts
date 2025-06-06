@@ -23,7 +23,10 @@ export class FormUtils {
         case 'minlength':
           return customMessages[field]?.minlength || `Mínimo de ${errors['minlength'].requiredLength} caracteres`;
         case 'min':
-      }   return customMessages[field]?.min || `Valor mínimo de ${errors['min'].min}`;
+          return customMessages[field]?.min || `Valor mínimo de ${errors['min'].min}`;
+        case 'email':
+          return customMessages[field]?.email || `La dirección de correo es inválida`;
+      }
     }
     return null;
   }

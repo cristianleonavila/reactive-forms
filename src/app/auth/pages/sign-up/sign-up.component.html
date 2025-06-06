@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col">
 
-        <form autocomplete="off">
+        <form autocomplete="off" [formGroup]="form">
 
             <!-- Nombre -->
             <div class="row mb-3">
@@ -12,11 +12,10 @@
                 <div class="col-sm-9">
                     <input type="text"
                            class="form-control"
-                           placeholder="Nombre del usuario">
+                           placeholder="Nombre del usuario"
+                           formControlName="nombre">
 
-                    <span class="form-text text-danger">
-                        Debe de ser en formato de nombre y apellido
-                    </span>
+                    <form-error [form]="form" name="nombre"/>
                 </div>
             </div>
 
@@ -26,10 +25,9 @@
                 <div class="col-sm-9">
                     <input type="email"
                            class="form-control"
-                           placeholder="Email del usuario">
-                    <span class="form-text text-danger">
-                        mensaje de error del email
-                    </span>
+                           placeholder="Email del usuario"
+                           formControlName="correo">
+                    <form-error [form]="form" name="correo"/>
                 </div>
             </div>
 
@@ -39,10 +37,9 @@
                 <div class="col-sm-9">
                     <input type="text"
                            class="form-control"
-                           placeholder="Nombre código del usuario">
-                    <span class="form-text text-danger">
-                         El username no puede ser Strider
-                    </span>
+                           placeholder="Nombre código del usuario"
+                           formControlName="usuario">
+                    <form-error [form]="form" name="usuario"/>
                 </div>
             </div>
 
@@ -52,11 +49,10 @@
                 <div class="col-sm-9">
                     <input type="password"
                            class="form-control"
-                           placeholder="Password de su cuenta">
+                           placeholder="Password de su cuenta"
+                           formControlName="clave">
 
-                    <span class="form-text text-danger">
-                         La contraseña debe de ser mayor de 6 caracteres.
-                    </span>
+                    <form-error [form]="form" name="clave"/>
                 </div>
             </div>
 
@@ -66,11 +62,9 @@
                 <div class="col-sm-9">
                     <input type="password"
                            class="form-control"
-                           placeholder="Confirmar la contraseña">
-
-                    <span class="form-text text-danger">
-                         Las contraseñas deben de ser iguales
-                    </span>
+                           placeholder="Confirmar la contraseña"
+                           formControlName="confirmarClave">
+                    <form-error [form]="form" name="confirmarClave"/>
                 </div>
             </div>
 
