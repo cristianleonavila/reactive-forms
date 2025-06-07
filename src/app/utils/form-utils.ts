@@ -26,6 +26,8 @@ export class FormUtils {
           return customMessages[field]?.min || `Valor mínimo de ${errors['min'].min}`;
         case 'email':
           return customMessages[field]?.email || `La dirección de correo es inválida`;
+        case 'pattern':
+          return customMessages[field]?.pattern || `El valor para ${field} es inválido`;
       }
     }
     return null;
@@ -42,5 +44,24 @@ export class FormUtils {
     if ( !formArray || index === undefined ) return false;
     const errors = formArray.controls[index].errors ?? {};
     return this.getError(index, errors, customMessages);
+  }
+
+  static isFieldsMatch(field1:string, field2:string) {
+    return (formGroup:FormGroup) => {
+      const value1 = formGroup.get(field1)?.value;
+      const value2 = formGroup.get(field2)?.value;
+      console.log({value1, value2});
+
+      return value1 === value2 ? null : {
+        valuesNotMatch: true
+      }
+    }
+  }
+
+  static getFormError(formGroup: FormGroup):string {
+    const errors = formGroup.errors;
+    console.log(errors);
+    return "Error a nivel de formulario";
+
   }
 }

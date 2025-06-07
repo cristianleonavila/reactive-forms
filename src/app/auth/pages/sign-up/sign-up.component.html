@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col">
 
-        <form autocomplete="off" [formGroup]="form">
+        <form autocomplete="off" [formGroup]="form" (ngSubmit)="submit()">
 
             <!-- Nombre -->
             <div class="row mb-3">
@@ -15,7 +15,7 @@
                            placeholder="Nombre del usuario"
                            formControlName="nombre">
 
-                    <form-error [form]="form" name="nombre"/>
+                    <form-error [form]="form" name="nombre" [customErrors]="formMessages"/>
                 </div>
             </div>
 
@@ -77,31 +77,29 @@
                     </button>
                 </div>
             </div>
-
-
+            <form-error [form]="form"/>
         </form>
     </div>
 </div>
 
 
-<h2>Form Valid: </h2>
-<h2>Form Status: </h2>
-<h2>Form Pending: </h2>
+<h2>Form Valid: {{ form.valid }}</h2>
+<h2>Form Status: {{ form.status }}</h2>
+<h2>Form Pending:  {{ form.pending }}</h2>
 <h2>Form errors</h2>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ form.errors | json }}</pre>
 
 <h5>Nombre</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ form.controls['nombre'].errors | json }}</pre>
 
 <h5>Email</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ form.controls['correo'].errors | json }}</pre>
 
 <h5>Username</h5>
-<pre>{{ 'formulario' | json }}</pre>
-
+<pre>{{ form.controls['usuario'].errors | json }}</pre>
 
 <h5>Password</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ form.controls['clave'].errors | json }}</pre>
 
 <h5>Confirmar</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ form.controls['confirmarClave'].errors | json }}</pre>

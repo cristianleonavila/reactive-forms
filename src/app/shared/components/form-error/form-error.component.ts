@@ -15,8 +15,6 @@ export class FormErrorComponent {
 
   name = input<string>("");
 
-  private formUtils = FormUtils;
-
   formArray = input<FormArray>();
 
   index = input<number>();
@@ -25,11 +23,19 @@ export class FormErrorComponent {
 
   hasErrors() {
     if (!this.form() || !this.name()) return false;
-    return this.formUtils.hasErrors(this.form(), this.name());
+    return FormUtils.hasErrors(this.form(), this.name());
   }
 
   getFieldError() {
-    return this.formUtils.getFieldError(this.form(), this.name(), this.customErrors());
+    return FormUtils.getFieldError(this.form(), this.name(), this.customErrors());
+  }
+
+  formHasErrors() {
+    return this.form().errors && this.form().touched;
+  }
+
+  getFormError() {
+    return FormUtils.getFormError(this.form());
   }
 
 

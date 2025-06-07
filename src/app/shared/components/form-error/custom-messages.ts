@@ -3,6 +3,7 @@ export type CustomFormMessages = {
     required?:string,
     minlength?:string,
     min?:string,
-    email?:string
+    email?:string,
+    pattern?:string
   }
 };
