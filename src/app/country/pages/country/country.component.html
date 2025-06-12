@@ -8,11 +8,11 @@
       <label class="form-label">Continente:</label>
       <select formControlName="region" class="form-control">
         <option value="">-- Seleccione Continente --</option>
-
-        <!-- <option [value]="region">
+        <!--@for(region of countryService.regions; track $index) {
+        <option [value]="region">
           {{ region }}
-        </option> -->
-
+        </option>
+      }-->
       </select>
     </div>
   </div>
