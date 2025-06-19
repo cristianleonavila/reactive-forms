@@ -5,7 +5,7 @@ import { FormErrorComponent } from "../../../shared/components/form-error/form-e
 import { emailPattern, namePattern, notOnlySpacesPattern } from '../../../shared/patterns/common-patterns';
 import { CustomFormMessages } from '../../../shared/components/form-error/custom-messages';
 import { FormUtils } from '../../../utils/form-utils';
-
+import { noStriderValidation } from './validations';
 @Component({
   selector: 'app-sign-up',
   imports: [JsonPipe, ReactiveFormsModule, FormErrorComponent],
@@ -18,6 +18,9 @@ export class SignUpComponent {
     nombre: {
       required: "Debe especificar el nombre",
       pattern: "Hace falta el apellido"
+    },
+    usuario: {
+      noStrider: "El usuario strider no se puede utilizar"
     }
   }
 
@@ -26,7 +29,7 @@ export class SignUpComponent {
   form = this.fb.group({
     nombre: ["", [Validators.required, Validators.pattern(namePattern)]],
     correo: ["", [Validators.required, Validators.pattern(emailPattern)]],
-    usuario: ["", [Validators.required, Validators.minLength(6), Validators.pattern(notOnlySpacesPattern)]],
+    usuario: ["", [Validators.required, Validators.minLength(6), Validators.pattern(notOnlySpacesPattern), noStriderValidation]],
     clave: ["", [Validators.required, Validators.minLength(6)]],
     confirmarClave: ["", [Validators.required, Validators.minLength(6)]]
   }, {

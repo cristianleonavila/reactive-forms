@@ -1,9 +1,5 @@
 export type CustomFormMessages = {
-  [key: string]: {
-    required?:string,
-    minlength?:string,
-    min?:string,
-    email?:string,
-    pattern?:string
+  [controlName: string]: {
+    [validatorKey: string]: string;
   }
 };

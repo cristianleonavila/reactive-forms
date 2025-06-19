@@ -39,7 +39,7 @@
                            class="form-control"
                            placeholder="Nombre código del usuario"
                            formControlName="usuario">
-                    <form-error [form]="form" name="usuario"/>
+                    <form-error [form]="form" name="usuario" [customErrors]="formMessages"/>
                 </div>
             </div>
 
@@ -77,7 +77,6 @@
                     </button>
                 </div>
             </div>
-            <form-error [form]="form"/>
         </form>
     </div>
 </div>

@@ -20,7 +20,7 @@ export class SideMenuComponent {
 
   countryMenu: MenuItem[] = [{
     title: 'Paises',
-    route: '/county'
+    route: '/country'
   }];
 
   private getMenuiItems (): MenuItem[] {

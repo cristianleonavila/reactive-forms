@@ -1,4 +1,4 @@
-import { FormGroup, FormArray, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormArray, ValidationErrors, AbstractControl } from '@angular/forms';
 import { CustomFormMessages } from '../shared/components/form-error/custom-messages';
 
 export class FormUtils {
@@ -19,18 +19,26 @@ export class FormUtils {
     for ( const key of Object.keys(errors)) {
       switch(key) {
         case 'required':
-          return customMessages[field]?.required || "Este campo es requerido";
+          return this.getCustomError(customMessages, field, key) || "Este campo es requerido";
         case 'minlength':
-          return customMessages[field]?.minlength || `Mínimo de ${errors['minlength'].requiredLength} caracteres`;
+          return this.getCustomError(customMessages, field, key) || `Mínimo de ${errors['minlength'].requiredLength} caracteres`;
         case 'min':
-          return customMessages[field]?.min || `Valor mínimo de ${errors['min'].min}`;
+          return this.getCustomError(customMessages, field, key) || `Valor mínimo de ${errors['min'].min}`;
         case 'email':
-          return customMessages[field]?.email || `La dirección de correo es inválida`;
+          return this.getCustomError(customMessages, field, key) || `La dirección de correo es inválida`;
         case 'pattern':
-          return customMessages[field]?.pattern || `El valor para ${field} es inválido`;
+          return this.getCustomError(customMessages, field, key) || `El valor para ${field} es inválido`;
+        default:
+          return this.getCustomError(customMessages, field, key) || `El valor para ${field} es inválido`;
       }
     }
     return null;
+  }
+
+  private static getCustomError(customErrors: CustomFormMessages = {}, field:string | number, key:string):string | null {
+    if ( !customErrors[field] ) return null;
+    if ( !customErrors[field][key]) return null;
+    return customErrors[field][key];
   }
 
   static hasErrorsInArray(formArray: FormArray | undefined, index: number | undefined) {
@@ -64,4 +72,5 @@ export class FormUtils {
     return "Error a nivel de formulario";
 
   }
+
 }
